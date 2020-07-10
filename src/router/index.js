@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Ebook from '../views/ebook/index.vue'
 import Ebookreader from '../components/ebook/EbookReader.vue'
-import test from '../components/test.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,10 +19,6 @@ const routes = [
         component: Ebookreader
       }
     ]
-  },
-  {
-    path: '/test',
-    component: test
   }
 ]
 

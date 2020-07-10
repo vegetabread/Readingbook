@@ -4,15 +4,10 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
 export default {
-  computed: {
-    ...mapGetters(['test'])
-  },
   mounted () {
-    this.$store.dispatch('setTeset', 10000)
-    console.log(this.$store)
-    console.log('thisis test', this.test)
+    // this.$store.dispatch('setTeset', 10000)
+    // console.log('输出了this.test', this.test)
   }
 }
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,6 +22,5 @@ document.addEventListener('DOMContentLoaded', () => {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: pink;
 }
 </style>

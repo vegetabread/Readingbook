@@ -2,7 +2,7 @@
     <div class="menubar">
         <!-- 这是底部导航栏 -->
         <transition name="slide-up">
-            <div class="footerwrapper"  v-show="this.$store.state.book.menuVisible">
+            <div class="footerwrapper"  v-show="menuvisible">
                 <div class="headericon">
                     <span class="icon-menu" ></span>
                 </div>
@@ -20,7 +20,9 @@
     </div>
 </template>
 <script>
+import { ebookMixins } from '../../utils/mixin'
 export default {
+  mixins: [ebookMixins],
   data () {
     return {
     }

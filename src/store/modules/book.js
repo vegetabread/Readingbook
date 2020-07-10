@@ -1,20 +1,19 @@
 const book = {
   state: {
     test: 1,
-    menuVisible: false
+    menuVisible: false,
+    filename: '',
+    titlename: '我是天下第一'
   },
   mutations: {
+    setfilename (state, val) {
+      state.filename = val
+    },
     settest (state, newtest) {
       state.test = newtest
     },
     setmenuvisible (state, val) {
       state.menuVisible = val
-    }
-  },
-  actions: {
-    setTeset: ({ commit, state }, newtest) => {
-      commit('settest', newtest)
-      console.log(state.test, newtest)
     }
   }
 }

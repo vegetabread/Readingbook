@@ -1,7 +1,7 @@
 <template>
     <div>
         <transition name="slide-down">
-            <div class="titlewrapper" v-show="this.$store.state.book.menuVisible" >
+            <div class="titlewrapper" v-show="menuvisible">
                 <div class="left">
                         <span class="icon-back icon"></span>
                 </div>
@@ -21,12 +21,16 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     showif: {
       type: Boolean,
       default: false
     }
+  },
+  computed: {
+    ...mapGetters(['menuvisible'])
   },
   methods: {
     test () {
