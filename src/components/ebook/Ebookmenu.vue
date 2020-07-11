@@ -4,28 +4,42 @@
         <transition name="slide-up">
             <div class="footerwrapper"  v-show="menuvisible">
                 <div class="headericon">
-                    <span class="icon-menu" ></span>
+                    <span class="icon-menu" @click="setfuntion(3)"></span>
                 </div>
                 <div class="headericon">
-                    <span class="icon-progress" ></span>
+                    <span class="icon-progress" @click="setfuntion(2)"></span>
                 </div>
                 <div class="headericon" >
-                    <span class="icon-bright"></span>
+                    <span class="icon-bright" @click="setfuntion(1)"></span>
                 </div>
                 <div class="headericon" >
-                    <span class="icon-a" >A</span>
+                    <span class="icon-a" @click="setfuntion(0)">A</span>
                 </div>
             </div>
         </transition>
+        <setting-font></setting-font>
+        <setting-fontstyle></setting-fontstyle>
     </div>
 </template>
 <script>
 import { ebookMixins } from '../../utils/mixin'
+import SettingFont from '../../components/ebook/EbookSetting'
+import SettingFontstyle from '../../components/ebook/Ebookfontpopup'
 export default {
   mixins: [ebookMixins],
   data () {
     return {
     }
+  },
+  methods: {
+    setfuntion (val) {
+      this.setvisible(val)
+      console.log('快看注意了', this.settingvisible)
+    }
+  },
+  components: {
+    SettingFont,
+    SettingFontstyle
   }
 }
 </script>

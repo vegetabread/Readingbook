@@ -17,6 +17,7 @@ export default {
       const url = 'http://localhost:8081/epub/' + this.filename + '.epub'
       this.book = new Epub(url)
       // 将图书渲染在页面上
+      this.setcurrentbook(this.book)
       this.rendition = this.book.renderTo('show', {
         width: innerWidth,
         height: innerHeight,
@@ -27,13 +28,11 @@ export default {
       this.rendition.on('touchstart', event => {
         this.touchStartX = event.changedTouches[0].clientX
         this.touchStartTime = event.timeStamp
-        console.log(this.touchStartX)
       })
       // 手指触碰屏幕结束
       this.rendition.on('touchend', event => {
         const offsetX = event.changedTouches[0].clientX - this.touchStartX
         const time = event.timeStamp - this.touchStartTime
-        console.log(offsetX, time)
         // 半段触屏的方向和时间
         if (time < 500 && offsetX > 40) {
           this.prevPage()
@@ -45,6 +44,14 @@ export default {
         // 这句话报错，需要讨论
         // event.preventDefault()
         event.stopPropagation()
+      })
+      this.rendition.hooks.content.register(contents => {
+        Promise.all([
+          contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/daysOne.css`),
+          contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/cabin.css`),
+          contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/montserrat.css`),
+          contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/tangerine.css`)
+        ])
       })
     },
     // 后一页
@@ -61,17 +68,18 @@ export default {
     hidetopandbottom () {
       // this.$store.dispatch('asetmenuvisible', false)
       this.asetmenuvisible(false)
+      this.setfontstyle(false)
     },
     // 显示上下标题栏
     showTitleandMenu () {
-      console.log('进入到了showtitle')
-      console.log(this.$store.state.book.menuVisible)
-      this.asetmenuvisible(!this.menuVisible)
+      this.asetmenuvisible(!this.menuvisible)
+      this.setvisible(-1)
+      this.setfontstyle(false)
     }
   },
   mounted () {
-    console.log('mouted函数进来了')
-    console.log(this.$route.params.filename.split('|').join('/'))
+    // console.log('mouted函数进来了')
+    // console.log(this.$route.params.filename.split('|').join('/'))
     this.asetfilename(this.$route.params.filename.split('|').join('/')).then(() => { this.initEpub() })
     // this.initEpub()
   }

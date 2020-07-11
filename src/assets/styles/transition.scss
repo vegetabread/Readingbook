@@ -1,0 +1,11 @@
+.popup-slide-up-enter, .popup-slide-up-leave-to {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+}
+.popup-slide-up-enter-to, .popup-slide-up-leave {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}
+.popup-slide-up-enter-active, .popup-slide-up-leave {
+    transition: all .3s linear
+}
